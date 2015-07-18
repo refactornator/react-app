@@ -28,6 +28,7 @@ var styles = {
         padding: 12,
         marginRight: 10,
         marginBottom: 10,
+        display: 'inline-block',
         boxShadow: '2px 2px rgba(89,89,89,0.4)',
         transition: 'box-shadow 100ms linear',
         ':hover': {

@@ -1,7 +1,7 @@
 import React from 'react';
-import ChartItem from './components/ChartItem';
+import Home from './pages/Home';
 
 React.render(
-  <ChartItem />,
+  <Home />,
   document.getElementById('app')
 );
