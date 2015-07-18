@@ -4,7 +4,6 @@ var source = require('vinyl-source-stream');
 var browserify = require('browserify');
 var watchify = require('watchify');
 var babelify = require('babelify');
-var reactify = require('reactify');
 var browserSync = require('browser-sync').create();
 
 var path = {
@@ -14,34 +13,30 @@ var path = {
   ENTRY_POINT: './src/App.js'
 };
 
-gulp.task('watch', function() {
+watchify.args.debug = true;
+var bundler = watchify(browserify(path.ENTRY_POINT, watchify.args));
+bundler.transform(babelify.configure({
+    optional: ["es7.decorators", "es7.objectRestSpread"],
+    sourceMapRelative: 'src'
+}));
+
+bundler.on('update', bundle);
+
+function bundle() {
+    return bundler.bundle()
+        .pipe(source(path.OUT))
+        .pipe(gulp.dest(path.DEST))
+        .pipe(browserSync.stream({once: true}));
+}
+
+gulp.task('bundle', function () {
+    return bundle();
+});
+
+gulp.task('default', ['bundle'], function () {
     browserSync.init({
         server: {
             baseDir: "./"
         }
     });
-
-    var watcher = watchify(browserify({
-        entries: [path.ENTRY_POINT],
-        transform: [[babelify, { "optional": ["es7.decorators"] }], reactify],
-        debug: true,
-        cache: {},
-        packageCache: {},
-        fullPaths: true
-    }));
-
-    watcher.on('update', function() {
-        var stream = watcher.bundle()
-            .pipe(source(path.OUT))
-            .pipe(gulp.dest(path.DEST))
-            .on('finish', function() {
-                browserSync.reload();
-            });
-    });
-
-    return watcher.bundle()
-        .pipe(source(path.OUT))
-        .pipe(gulp.dest(path.DEST));
 });
-
-gulp.task('default', ['watch']);
