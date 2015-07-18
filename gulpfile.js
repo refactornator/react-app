@@ -23,7 +23,7 @@ gulp.task('watch', function() {
 
     var watcher = watchify(browserify({
         entries: [path.ENTRY_POINT],
-        transform: [babelify, reactify],
+        transform: [[babelify, { "optional": ["es7.decorators"] }], reactify],
         debug: true,
         cache: {},
         packageCache: {},
