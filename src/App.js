@@ -1,13 +1,14 @@
 import React from 'react';
 import Router from 'react-router';  
 import { DefaultRoute, RouteHandler, Route } from 'react-router';
+import NavBar from './components/NavBar';
 import Home from './pages/Home';
 
 class App extends React.Component {
   render() {
     return (
         <div id="app">
-            <div className="nav"></div>
+            <NavBar/>
             <RouteHandler/>
         </div>
     );
@@ -25,7 +26,7 @@ var routes = (
     <DefaultRoute handler={Home}/>
 
     <Route path="/home" handler={Home}>
-        <Route name="details" path="details/:id" handler={Message}/>
+        <Route name="details" path="details/:id" handler={Home}/>
     </Route>
   </Route>
 );

@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var sass = require('gulp-sass');
 var gutil = require('gulp-util');
 var uglify = require('gulp-uglify');
 var source = require('vinyl-source-stream');
@@ -39,10 +40,24 @@ gulp.task('bundle', function () {
     return bundle();
 });
 
-gulp.task('default', ['bundle'], function () {
+gulp.task('sass', function () {
+  gulp.src('./styles/main.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./dist/'))
+    .pipe(browserSync.stream());
+});
+
+gulp.task('copyfonts', function() {
+   gulp.src('./styles/fonts/**/*.{ttf,woff,eof,svg}')
+   .pipe(gulp.dest('./dist/fonts/'));
+});
+
+gulp.task('default', ['bundle', 'sass', 'copyfonts'], function () {
     browserSync.init({
         server: {
             baseDir: "./"
         }
     });
+
+    gulp.watch("./styles/*.scss", ['sass']);
 });

@@ -1,0 +1,26 @@
+@font-face {
+  font-family: "Zoomdata";
+  src: url(fonts/Zoomdata/ZoomdataSymbol-Regular.woff) format('woff'),
+      url(fonts/Zoomdata/ZoomdataSymbol-Regular.ttf) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@mixin zdss-icon($content: ''){
+    display: inline-block;
+    font-family: 'Zoomdata';
+    font-style: inherit;
+    font-weight: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    background:none;
+    background-image:none;
+    &:after{
+        content: $content;
+    }
+}
+
+.zdss-icon-menu {
+    @include zdss-icon('\E000');
+}

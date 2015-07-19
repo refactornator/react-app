@@ -5,6 +5,8 @@ import _ from 'lodash';
 
 import ChartGroup from '../components/ChartGroup';
 
+var paddingTop = 36;
+
 class Home extends React.Component {
     constructor(props) {
         super(props);
@@ -23,13 +25,19 @@ class Home extends React.Component {
     }
 
     render() {
+        var id = this.props.params.id;
+
         var numberOfColumns = Math.round(this.state.windowWidth / 380);
         
         return (
             <div style={styles.main}>
-                <Infinite containerHeight={document.body.clientHeight} elementHeight={500}>
+                <Infinite containerHeight={document.body.clientHeight - paddingTop} elementHeight={500}>
                     {_.range(100).map(function(index) {
-                        return <ChartGroup rows={2} columns={numberOfColumns} key={index} />;
+                        if (id !== undefined && index === 0) {
+                            return <ChartGroup rows={6} columns={numberOfColumns} key={index} />;
+                        } else {
+                            return <ChartGroup rows={2} columns={numberOfColumns} key={index} />;
+                        }
                     })}
                 </Infinite>
             </div>
@@ -47,7 +55,8 @@ class Home extends React.Component {
 
 var styles = {
     main: {
-        backgroundColor: '#EEE'
+        backgroundColor: '#EEE',
+        paddingTop,
     }
 }
 
