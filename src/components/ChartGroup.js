@@ -1,6 +1,7 @@
 import React from 'react';
 import Radium from 'radium';
-import _ from 'lodash';
+import { Link } from 'react-router';
+import { range } from 'lodash';
 
 import ChartItem from './ChartItem';
 
@@ -19,10 +20,10 @@ class ChartGroup extends React.Component {
                 <div style={[styles.header, {width}]}>
                     <img style={styles.icon} src="http://placekitten.com/40/36"/>
                     <span style={styles.title}>Title</span>
-                    <a href="#" style={styles.viewAll}>View All »</a>
+                    <Link to="details" params={{id: "123"}} style={styles.viewAll}>View All »</Link>
                 </div>
                 <div style={[styles.items, {width}]}>
-                    {_.range(items).map(function(index) {
+                    {range(items).map(function(index) {
                         return <ChartItem key={index} />;
                     })}
                 </div>

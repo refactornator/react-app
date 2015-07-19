@@ -1,6 +1,6 @@
 import React from 'react';
 import Router from 'react-router';  
-import { RouteHandler, Route } from 'react-router';
+import { DefaultRoute, RouteHandler, Route } from 'react-router';
 import Home from './pages/Home';
 
 class App extends React.Component {
@@ -14,9 +14,19 @@ class App extends React.Component {
   }
 }
 
+var Message = React.createClass({
+  render () {
+    return <h3>Message</h3>;
+  }
+});
+
 var routes = (  
   <Route handler={App}>
-    <Route path="/" handler={Home}/>
+    <DefaultRoute handler={Home}/>
+
+    <Route path="/home" handler={Home}>
+        <Route name="details" path="details/:id" handler={Message}/>
+    </Route>
   </Route>
 );
 
