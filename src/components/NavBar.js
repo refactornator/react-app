@@ -4,10 +4,9 @@ import { Link } from 'react-router';
 import { range } from 'lodash';
 
 import Icon from './Icon';
-import ChartItem from './ChartItem';
 
 @Radium
-class ChartGroup extends React.Component {
+class NavBar extends React.Component {
     constructor() {
         super();
         this._handleClick = this._handleClick.bind(this);
@@ -80,4 +79,4 @@ var styles = {
     }
 }
 
-module.exports = ChartGroup;
+module.exports = NavBar;
