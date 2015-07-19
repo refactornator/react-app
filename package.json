@@ -23,6 +23,7 @@
     "lodash": "^3.10.0",
     "radium": "^0.13.4",
     "react": "^0.13.3",
-    "react-infinite": "^0.4.0"
+    "react-infinite": "^0.4.0",
+    "react-router": "^0.13.3"
   }
 }
