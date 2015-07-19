@@ -1,7 +1,6 @@
 import React from 'react';
 import Radium from 'radium';
-import _ from 'lodash';
-import ChartItem from '../components/ChartItem';
+import ChartGroup from '../components/ChartGroup';
 
 @Radium
 class Home extends React.Component {
@@ -12,10 +11,8 @@ class Home extends React.Component {
 
     render() {
         return (
-            <div>
-                {_.range(10).map(function() {
-                    return <ChartItem />;
-                })}
+            <div style={styles.main}>
+                <ChartGroup rows={2} columns={3} key="home" />
             </div>
         );
     }
@@ -26,6 +23,12 @@ class Home extends React.Component {
 }
 
 var styles = {
+    main: {
+        backgroundColor: '#EEE',
+        height: '100%',
+        width: '100%',
+        overflow: 'auto'
+    }
 }
 
 module.exports = Home;

@@ -12,7 +12,7 @@ class ChartItem extends React.Component {
         return <div style={styles.main} onClick={this._handleClick}>
             <span style={styles.title}>Title</span>
             <span style={styles.lastUpdated}>an hour ago</span>
-            <img src="http://placekitten.com/284/194"/>
+            <img src="http://placekitten.com/275/150"/>
         </div>;
     }
 
@@ -23,11 +23,12 @@ class ChartItem extends React.Component {
 
 var styles = {
     main: {
-        width: 292,
-        height: 222,
+        width: 300,
+        height: 200,
         padding: 12,
         marginRight: 10,
         marginBottom: 10,
+        backgroundColor: 'white',
         display: 'inline-block',
         boxShadow: '2px 2px rgba(89,89,89,0.4)',
         transition: 'box-shadow 100ms linear',
