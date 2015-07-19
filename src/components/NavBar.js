@@ -21,8 +21,9 @@ class NavBar extends React.Component {
                 <div className="nav-item" style={styles.navItem} key="settings">
                     <Icon glyph="admin"/>
                 </div>
-                <div className="nav-item" style={styles.navItem} key="home">
+                <div className="nav-item selected" style={[styles.navItem, styles.selected]} key="home">
                     <Icon glyph="home"/>
+                    <div className="pointer-down" style={styles.pointerDown}></div>
                 </div>
                 <div className="logo" style={[styles.navItem, styles.logo]}>
                     <img src="img/headerLogo.svg" alt="Zoomdata" style={{height: 36, paddingRight: 70}} />
@@ -72,7 +73,24 @@ var styles = {
         }
     },
     selected: {
-        backgroundColor: '#111'
+        color: '#D6DF23',
+        backgroundColor: '#111',
+        ':hover': {
+            color: '#D6DF23',
+            backgroundColor: '#111',
+        }
+    },
+    pointerDown: {
+        width: 0,
+        height: 0,
+        display: 'block',
+        left: 13,
+        top: -3,
+        borderLeft: '8px solid transparent',
+        borderRight: '8px solid transparent',
+        borderTop: '8px solid #000',
+        position: 'relative',
+        zIndex: 2055
     },
     logo: {
         flexGrow: 1
