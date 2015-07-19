@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var gutil = require('gulp-util');
 var uglify = require('gulp-uglify');
 var source = require('vinyl-source-stream');
 var browserify = require('browserify');
@@ -24,6 +25,11 @@ bundler.on('update', bundle);
 
 function bundle() {
     return bundler.bundle()
+        .on('error', function (err) {
+            gutil.log(err.message);
+            browserSync.notify("Browserify Error!");
+            this.emit("end");
+        })
         .pipe(source(path.OUT))
         .pipe(gulp.dest(path.DEST))
         .pipe(browserSync.stream({once: true}));
