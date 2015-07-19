@@ -22,8 +22,8 @@ class ChartGroup extends React.Component {
                     <a href="#" style={styles.viewAll}>View All »</a>
                 </div>
                 <div style={[styles.items, {width}]}>
-                    {_.range(items).map(function() {
-                        return <ChartItem />;
+                    {_.range(items).map(function(index) {
+                        return <ChartItem key={index} />;
                     })}
                 </div>
             </div>

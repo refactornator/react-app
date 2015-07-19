@@ -1,18 +1,30 @@
 import React from 'react';
 import Radium from 'radium';
+import Infinite from 'react-infinite';
+import _ from 'lodash';
+
 import ChartGroup from '../components/ChartGroup';
 
-@Radium
 class Home extends React.Component {
     constructor() {
         super();
         this._handleClick = this._handleClick.bind(this);
     }
 
+    elementInfiniteLoad() {
+        return <div className="infinite-list-item">
+            Loading...
+        </div>;
+    }
+
     render() {
         return (
             <div style={styles.main}>
-                <ChartGroup rows={2} columns={3} key="home" />
+                <Infinite containerHeight={document.body.clientHeight} elementHeight={500}>
+                    {_.range(100).map(function(index) {
+                        return <ChartGroup rows={2} columns={3} key={index} />;
+                    })}
+                </Infinite>
             </div>
         );
     }
@@ -24,10 +36,7 @@ class Home extends React.Component {
 
 var styles = {
     main: {
-        backgroundColor: '#EEE',
-        height: '100%',
-        width: '100%',
-        overflow: 'auto'
+        backgroundColor: '#EEE'
     }
 }
 
