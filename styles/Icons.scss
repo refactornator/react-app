@@ -7,20 +7,38 @@
 }
 
 @mixin zdss-icon($content: ''){
-    display: inline-block;
-    font-family: 'Zoomdata';
-    font-style: inherit;
-    font-weight: normal;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  display: inline-block;
+  font-family: 'Zoomdata';
+  font-style: inherit;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 
-    background:none;
-    background-image:none;
-    &:after{
-        content: $content;
-    }
+  background:none;
+  background-image:none;
+  &:after{
+    content: $content;
+  }
 }
 
-.zdss-icon-menu {
-    @include zdss-icon('\E000');
+$prefix: 'zdss-icon';
+
+.#{$prefix}-menu {
+  @include zdss-icon('\E000');
+}
+
+.#{$prefix}-admin {
+  @include zdss-icon('\E010');
+}
+
+.#{$prefix}-home {
+  @include zdss-icon('\E020');
+}
+
+.#{$prefix}-help-filled {
+  @include zdss-icon('\E072');
+}
+
+.#{$prefix}-user {
+  @include zdss-icon('\E080');
 }

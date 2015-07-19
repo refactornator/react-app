@@ -16,14 +16,24 @@ class ChartGroup extends React.Component {
     render() {
         return (
             <div className="nav" style={styles.main}>
-                <div className="nav-item hamburger" style={styles.navItem}>
+                <div className="nav-item" style={styles.navItem} key="menu">
                     <Icon glyph="menu"/>
                 </div>
-                <div className="nav-item settings" style={styles.navItem}>S</div>
-                <div className="nav-item home" style={styles.navItem}>Ho</div>
-                <div className="nav-item logo" style={[styles.navItem, styles.logo]}>ZD</div>
-                <div className="nav-item support" style={styles.navItem}>?</div>
-                <div className="nav-item user" style={styles.navItem}>U</div>
+                <div className="nav-item" style={styles.navItem} key="settings">
+                    <Icon glyph="admin"/>
+                </div>
+                <div className="nav-item" style={styles.navItem} key="home">
+                    <Icon glyph="home"/>
+                </div>
+                <div className="logo" style={[styles.navItem, styles.logo]}>
+                    <img src="img/headerLogo.svg" alt="Zoomdata" style={{height: 36, paddingRight: 70}} />
+                </div>
+                <div className="nav-item support" style={styles.navItem} key="support">
+                    <Icon glyph="help-filled"/>
+                </div>
+                <div className="nav-item" style={styles.navItem} key="user">
+                    <Icon glyph="user"/>
+                </div>
             </div>
         );
     }
@@ -48,14 +58,19 @@ var styles = {
         justifyContent: 'center'
     },
     navItem: {
+        fontSize: 22,
         height: 36,
         width: 44,
         textAlign: 'center',
         verticalAlign: 'middle',
         lineHeight: '36px',
-        color: 'white',
-        textShadow: '0 -1px 0 rgba(0,0,0,0.25)',
-        cursor: 'pointer'
+        color: '#D2D2D2',
+        textShadow: '2px 2px #000000',
+        cursor: 'pointer',
+        ':hover': {
+            color: '#fff',
+            backgroundColor: 'transparent'
+        }
     },
     selected: {
         backgroundColor: '#111'

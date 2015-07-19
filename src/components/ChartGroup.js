@@ -16,7 +16,7 @@ class ChartGroup extends React.Component {
         var items = this.props.rows * this.props.columns;
         var width = this.props.columns * 310;
         return (
-            <div>
+            <div style={{paddingTop: 36}}>
                 <div style={[styles.header, {width}]}>
                     <img style={styles.icon} src="http://placekitten.com/40/36"/>
                     <span style={styles.title}>Title</span>

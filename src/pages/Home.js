@@ -32,7 +32,7 @@ class Home extends React.Component {
         return (
             <div style={styles.main}>
                 <Infinite containerHeight={document.body.clientHeight - paddingTop} elementHeight={500}>
-                    {_.range(100).map(function(index) {
+                    {_.range(25).map(function(index) {
                         if (id !== undefined && index === 0) {
                             return <ChartGroup rows={6} columns={numberOfColumns} key={index} />;
                         } else {
