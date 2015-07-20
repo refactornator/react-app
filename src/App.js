@@ -15,12 +15,6 @@ class App extends React.Component {
   }
 }
 
-var Message = React.createClass({
-  render () {
-    return <h3>Message</h3>;
-  }
-});
-
 var routes = (  
   <Route handler={App}>
     <DefaultRoute handler={Home}/>
