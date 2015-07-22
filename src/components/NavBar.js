@@ -1,9 +1,11 @@
 import React from 'react';
-import Radium from 'radium';
 import { Link } from 'react-router';
 import { range } from 'lodash';
+import classNames from 'classnames';
 
 import Icon from './Icon';
+
+import './NavBar.scss';
 
 class NavImage extends React.Component {
     constructor() {
@@ -19,62 +21,22 @@ class NavImage extends React.Component {
     }
 }
 
-@Radium
 class NavButton extends React.Component {
     constructor(props) {
         super(props);
         this.state = {selected: props.selected || false};
-
-        this.styles = {
-            main: {
-                fontSize: 22,
-                height: 36,
-                width: 44,
-                textAlign: 'center',
-                verticalAlign: 'middle',
-                lineHeight: '36px',
-                color: '#D2D2D2',
-                textShadow: '2px 2px #000000',
-                cursor: 'pointer',
-                ':hover': {
-                    color: '#fff',
-                    backgroundColor: 'transparent'
-                }
-            },
-            pointerDown: {
-                width: 0,
-                height: 0,
-                display: 'block',
-                left: 13,
-                top: -3,
-                borderLeft: '8px solid transparent',
-                borderRight: '8px solid transparent',
-                borderTop: '8px solid #000',
-                position: 'relative',
-                zIndex: 2055
-            },
-            selected: {
-                color: '#D6DF23',
-                backgroundColor: '#111',
-                ':hover': {
-                    color: '#D6DF23',
-                    backgroundColor: '#111',
-                }
-            }
-        };
     }
 
     render() {
-        var mainStyle = [this.styles.main];
-        if (this.state.selected) {
-            mainStyle.push(this.styles.selected);
-        }
+        var classes = classNames('nav-button', {
+            'selected': this.state.selected
+        });
         return (
-            <div style={mainStyle} key={this.props.name}>
+            <div className={classes} key={this.props.name}>
                 <Icon glyph={this.props.glyph === undefined ? this.props.name : this.props.glyph}/>
                 {() => {
                     if (this.state.selected) {
-                        return <div className="pointer-down" style={this.styles.pointerDown}></div>;
+                        return <div className="pointer-down"></div>;
                     }
                 }()}
             </div>
@@ -87,31 +49,15 @@ NavButton.propTypes = {
     selected: React.PropTypes.bool
 };
 
-@Radium
 class NavBar extends React.Component {
     constructor() {
         super();
         this._handleClick = this._handleClick.bind(this);
-
-        this.styles = {
-            main: {
-                height: 36,
-                minHeight: 36,
-                backgroundColor: '#323232',
-                boxShadow: '0 3px 2px rgba(50,50,50,0.2)',
-                position: 'absolute',
-                left: 0,
-                top: 0,
-                right: 0,
-                zIndex: 1040,
-                display: 'flex'
-            }
-        };
     }
 
     render() {
         return (
-            <div className="nav" style={this.styles.main}>
+            <div className="nav">
                 <NavButton name="menu" />
                 <NavButton name="admin" />
                 <NavButton name="home" selected={true} />

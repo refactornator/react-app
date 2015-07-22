@@ -2,7 +2,9 @@ import React from 'react';
 import Router from 'react-router';  
 import { DefaultRoute, RouteHandler, Route } from 'react-router';
 import NavBar from './components/NavBar';
-import Home from './pages/Home';
+import Home from './pages/Home/Home';
+
+import '../styles/main.scss'
 
 class App extends React.Component {
   render() {

@@ -1,9 +1,10 @@
 import React from 'react';
-import Radium from 'radium';
 import Infinite from 'react-infinite';
 import _ from 'lodash';
 
-import ChartGroup from '../components/ChartGroup';
+import ChartGroup from './components/ChartGroup';
+
+import './Home.scss';
 
 var paddingTop = 36;
 
@@ -30,7 +31,7 @@ class Home extends React.Component {
         var numberOfColumns = Math.round(this.state.windowWidth / 380);
         
         return (
-            <div style={styles.main}>
+            <div className="home" style={{paddingTop}}>
                 <Infinite containerHeight={document.body.clientHeight - paddingTop} elementHeight={500}>
                     {_.range(25).map(function(index) {
                         if (id !== undefined && index === 0) {
@@ -50,13 +51,6 @@ class Home extends React.Component {
 
     _handleResize() {
         this.setState({windowWidth: window.innerWidth});
-    }
-}
-
-var styles = {
-    main: {
-        backgroundColor: '#EEE',
-        paddingTop,
     }
 }
 
