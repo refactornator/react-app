@@ -2,7 +2,8 @@ import React from 'react';
 import Infinite from 'react-infinite';
 import _ from 'lodash';
 
-import ChartGroup from './components/ChartGroup';
+import MovieItem from './components/MovieItem';
+import movies from './components/Movies';
 
 import './Home.scss';
 
@@ -32,13 +33,9 @@ class Home extends React.Component {
         
         return (
             <div className="home" style={{paddingTop}}>
-                <Infinite containerHeight={document.body.clientHeight - paddingTop} elementHeight={500}>
-                    {_.range(25).map(function(index) {
-                        if (id !== undefined && index === 0) {
-                            return <ChartGroup rows={6} columns={numberOfColumns} key={index} />;
-                        } else {
-                            return <ChartGroup rows={2} columns={numberOfColumns} key={index} />;
-                        }
+                <Infinite containerHeight={document.body.clientHeight - paddingTop} elementHeight={200}>
+                    {movies.map(function(movie) {
+                        return <MovieItem title={movie.Title} year={movie.Year} rating={movie.Rating} />
                     })}
                 </Infinite>
             </div>
