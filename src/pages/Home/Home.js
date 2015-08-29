@@ -7,7 +7,7 @@ import movies from './components/Movies';
 
 import './Home.scss';
 
-var paddingTop = 36;
+var paddingTop = 100;
 
 class Home extends React.Component {
     constructor(props) {
