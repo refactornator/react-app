@@ -3,6 +3,8 @@ import { Link } from 'react-router';
 import { range } from 'lodash';
 import classNames from 'classnames';
 
+import MovieActions from '../actions/MovieActions';
+
 import './NavBar.scss';
 
 class NavBar extends React.Component {
@@ -20,8 +22,9 @@ class NavBar extends React.Component {
         );
     }
 
-    _handleInput() {
-        console.log(this);
+    _handleInput(e) {
+        var value = e.target.value;
+        MovieActions.filterList(value);
     }
 }
 
