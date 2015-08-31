@@ -37849,7 +37849,7 @@
 	                    _reactInfinite2['default'],
 	                    { containerHeight: document.body.clientHeight - paddingTop, elementHeight: 250 },
 	                    this.state.movies.map(function (movie) {
-	                        return _react2['default'].createElement(_componentsMovieItem2['default'], { key: movie.id, title: movie.title, year: movie.year, rating: movie.rating, duration: movie.dur, genres: movie.genres, poster: movie.poster, plot: movie.plot });
+	                        return _react2['default'].createElement(_componentsMovieItem2['default'], { key: movie.id, imdbId: movie.id, title: movie.title, year: movie.year, rating: movie.rating, duration: movie.dur, genres: movie.genres, poster: movie.poster, plot: movie.plot });
 	                    })
 	                )
 	            );
@@ -38578,7 +38578,7 @@
 	            return _react2['default'].createElement(
 	                'div',
 	                { className: "movie-item", onClick: this._handleClick },
-	                _react2['default'].createElement('img', { src: this.props.poster, width: "150", height: "223" }),
+	                _react2['default'].createElement('img', { src: '/img/posters/' + this.props.imdbId + '-150x223.jpg', width: "150", height: "223" }),
 	                _react2['default'].createElement(
 	                    'div',
 	                    { className: "info" },
