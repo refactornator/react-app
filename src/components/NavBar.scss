@@ -18,16 +18,17 @@
     }
 
     .search-wrapper {
-        margin: 0 auto;
-        width: 193px;
+        margin: 5px auto 0 auto;
+        width: 243px;
 
         label.search {
             color: white;
             text-align: right;
             clear: both;
             float:left;
+            font-size: 20px;
             margin-right:5px;
-            margin-top: 3px;
+            margin-top: -3px;
         }
 
         input.search {

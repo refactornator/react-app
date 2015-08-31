@@ -13,8 +13,11 @@ class MovieItem extends React.Component {
             <img src={this.props.poster} width="150" height="223" />
             <div className="info">
                 <div className="title">{this.props.title}</div>
-                <div className="year">Released: {this.props.year}</div>
-                <div className="rating">Rating: {this.props.rating}</div>
+                <div className="year"><label>Released:</label> {this.props.year}</div>
+                <div className="rating"><label>Rating:</label> {this.props.rating}</div>
+                <div className="duration"><label>Runtime:</label> {parseInt(this.props.duration, 10)} mins</div>
+                <div className="genres"><label>Genres:</label> {this.props.genres}</div>
+                <div className="plot">{this.props.plot}</div>
             </div>
         </div>;
     }
