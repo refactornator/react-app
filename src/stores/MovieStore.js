@@ -3,25 +3,27 @@ import Movies from './Movies';
 import MovieActions from '../actions/MovieActions';
 
 var MovieStore = Reflux.createStore({
-    listenables: [MovieActions],
+    listenables: MovieActions,
     sortField: 'rating',
     sortDirection: 'desc',
     searchTerm: '',
 
-    sortList: function(field, direction) {
+    onSortField: function(field) {
         this.sortField = field;
+        this.trigger(this._processMoviesList());
+    },
+
+    onSortDirection: function(direction) {
         this.sortDirection = direction;
-        var filteredMovies = this._processMoviesList();
-        this.trigger(filteredMovies);
+        this.trigger(this._processMoviesList());
     },
 
-    filterList: function(searchTerm) {
+    onFilterList: function(searchTerm) {
         this.searchTerm = searchTerm;
-        var filteredMovies = this._processMoviesList();
-        this.trigger(filteredMovies);
+        this.trigger(this._processMoviesList());
     },
 
-    _processMoviesList() {
+    _processMoviesList: function() {
         var searchTerm = this.searchTerm;
         var sortField = this.sortField;
         var sortDirection = this.sortDirection;
@@ -34,10 +36,22 @@ var MovieStore = Reflux.createStore({
                 return false;
             }
         }).sort(function(a, b) {
-            if(sortDirection === 'asc') {
-                return a[sortField] - b[sortField];
-            } else {
-                return b[sortField] - a[sortField];
+            if(sortField === 'rating') {
+                if(sortDirection === 'asc') {
+                    return a[sortField] - b[sortField];
+                } else {
+                    return b[sortField] - a[sortField];
+                }
+            } else if(sortField === 'title') {
+                if(sortDirection === 'asc') {
+                    if(a[sortField] < b[sortField]) return -1;
+                    if(a[sortField] > b[sortField]) return 1;
+                    return 0;
+                } else {
+                    if(a[sortField] < b[sortField]) return 1;
+                    if(a[sortField] > b[sortField]) return -1;
+                    return 0;
+                }
             }
         });
     }

@@ -1,7 +1,9 @@
 import Reflux from 'reflux';
 
 var MovieActions = Reflux.createActions([
-  'filterList'
+    'sortField',
+    'sortDirection',
+    'filterList'
 ]);
 
 module.exports = MovieActions;

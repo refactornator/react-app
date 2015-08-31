@@ -35,4 +35,19 @@
             display: block;
         }
     }
+
+    .sort-wrapper {
+        margin: 5px auto 0 auto;
+        width: 243px;
+
+        label.sort {
+            color: white;
+            text-align: right;
+            clear: both;
+            float:left;
+            font-size: 20px;
+            margin-right:5px;
+            margin-top: -6px;
+        }
+    }
 }
