@@ -16,6 +16,10 @@ module.exports = {
         test: /\.html$/,
         loader: "file?name=[name].[ext]",
       },
+      {
+        test: /img\/posters\/.*\.jpg$/,
+        loader: "file?name=img/posters/[name].[ext]",
+      },
       { 
         test: /\.scss$/,
         loader: ExtractTextPlugin.extract(
