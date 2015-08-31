@@ -20,7 +20,10 @@ class NavBar extends React.Component {
         return (
             <div className="nav">
                 <div className="title">IMDB Movie Searcher</div>
-                <input className="search" type="text" onChange={this._handleInput} />
+                <div className="search-wrapper">
+                    <label className="search" htmlFor="search">Search Names: </label>
+                    <input id="search" className="search" type="text" onChange={this._handleInput} />
+                </div>
                 <input style={{display: 'none'}} type="range" min="0" max="5" onChange={this._handleRangeChange} value={this.state.ratingFilterValue} />
             </div>
         );

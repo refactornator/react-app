@@ -17,8 +17,21 @@
         font-weight: bold;
     }
 
-    .search {
-        display: block;
+    .search-wrapper {
         margin: 0 auto;
+        width: 193px;
+
+        label.search {
+            color: white;
+            text-align: right;
+            clear: both;
+            float:left;
+            margin-right:5px;
+            margin-top: 3px;
+        }
+
+        input.search {
+            display: block;
+        }
     }
 }
