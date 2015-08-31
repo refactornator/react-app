@@ -27,6 +27,17 @@
       margin-top: -3px; }
     .nav .search-wrapper input.search {
       display: block; }
+  .nav .sort-wrapper {
+    margin: 5px auto 0 auto;
+    width: 243px; }
+    .nav .sort-wrapper label.sort {
+      color: white;
+      text-align: right;
+      clear: both;
+      float: left;
+      font-size: 20px;
+      margin-right: 5px;
+      margin-top: -6px; }
 
 /*# sourceMappingURL=dist/sass.map */.movie-item {
   width: 700px;

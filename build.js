@@ -153,6 +153,8 @@
 	
 	        this._handleInput = this._handleInput.bind(this);
 	        this._handleRangeChange = this._handleRangeChange.bind(this);
+	        this._handleSortFieldChange = this._handleSortFieldChange.bind(this);
+	        this._handleSortDirectionChange = this._handleSortDirectionChange.bind(this);
 	    }
 	
 	    _createClass(NavBar, [{
@@ -176,6 +178,43 @@
 	                    ),
 	                    _react2['default'].createElement('input', { id: "search", className: "search", type: "text", onChange: this._handleInput })
 	                ),
+	                _react2['default'].createElement(
+	                    'div',
+	                    { className: "sort-wrapper" },
+	                    _react2['default'].createElement(
+	                        'label',
+	                        { className: "sort", htmlFor: "sort" },
+	                        'Sort By: '
+	                    ),
+	                    _react2['default'].createElement(
+	                        'select',
+	                        { onChange: this._handleSortFieldChange },
+	                        _react2['default'].createElement(
+	                            'option',
+	                            { value: "rating" },
+	                            'Rating'
+	                        ),
+	                        _react2['default'].createElement(
+	                            'option',
+	                            { value: "title" },
+	                            'Title'
+	                        )
+	                    ),
+	                    _react2['default'].createElement(
+	                        'select',
+	                        { onChange: this._handleSortDirectionChange },
+	                        _react2['default'].createElement(
+	                            'option',
+	                            { value: "desc" },
+	                            'Descending'
+	                        ),
+	                        _react2['default'].createElement(
+	                            'option',
+	                            { value: "asc" },
+	                            'Ascending'
+	                        )
+	                    )
+	                ),
 	                _react2['default'].createElement('input', { style: { display: 'none' }, type: "range", min: "0", max: "5", onChange: this._handleRangeChange, value: this.state.ratingFilterValue })
 	            );
 	        }
@@ -192,6 +231,18 @@
 	            this.setState({
 	                ratingFilterValue: value
 	            });
+	        }
+	    }, {
+	        key: '_handleSortFieldChange',
+	        value: function _handleSortFieldChange(e) {
+	            var value = e.target.value;
+	            _actionsMovieActions2['default'].sortField(value);
+	        }
+	    }, {
+	        key: '_handleSortDirectionChange',
+	        value: function _handleSortDirectionChange(e) {
+	            var value = e.target.value;
+	            _actionsMovieActions2['default'].sortDirection(value);
 	        }
 	    }]);
 	
@@ -36131,7 +36182,7 @@
 	
 	var _reflux2 = _interopRequireDefault(_reflux);
 	
-	var MovieActions = _reflux2['default'].createActions(['filterList']);
+	var MovieActions = _reflux2['default'].createActions(['sortField', 'sortDirection', 'filterList']);
 	
 	module.exports = MovieActions;
 	
@@ -45781,22 +45832,24 @@
 	var _actionsMovieActions2 = _interopRequireDefault(_actionsMovieActions);
 	
 	var MovieStore = _reflux2['default'].createStore({
-	    listenables: [_actionsMovieActions2['default']],
+	    listenables: _actionsMovieActions2['default'],
 	    sortField: 'rating',
 	    sortDirection: 'desc',
 	    searchTerm: '',
 	
-	    sortList: function sortList(field, direction) {
+	    onSortField: function onSortField(field) {
 	        this.sortField = field;
-	        this.sortDirection = direction;
-	        var filteredMovies = this._processMoviesList();
-	        this.trigger(filteredMovies);
+	        this.trigger(this._processMoviesList());
 	    },
 	
-	    filterList: function filterList(searchTerm) {
+	    onSortDirection: function onSortDirection(direction) {
+	        this.sortDirection = direction;
+	        this.trigger(this._processMoviesList());
+	    },
+	
+	    onFilterList: function onFilterList(searchTerm) {
 	        this.searchTerm = searchTerm;
-	        var filteredMovies = this._processMoviesList();
-	        this.trigger(filteredMovies);
+	        this.trigger(this._processMoviesList());
 	    },
 	
 	    _processMoviesList: function _processMoviesList() {
@@ -45811,10 +45864,22 @@
 	                return false;
 	            }
 	        }).sort(function (a, b) {
-	            if (sortDirection === 'asc') {
-	                return a[sortField] - b[sortField];
-	            } else {
-	                return b[sortField] - a[sortField];
+	            if (sortField === 'rating') {
+	                if (sortDirection === 'asc') {
+	                    return a[sortField] - b[sortField];
+	                } else {
+	                    return b[sortField] - a[sortField];
+	                }
+	            } else if (sortField === 'title') {
+	                if (sortDirection === 'asc') {
+	                    if (a[sortField] < b[sortField]) return -1;
+	                    if (a[sortField] > b[sortField]) return 1;
+	                    return 0;
+	                } else {
+	                    if (a[sortField] < b[sortField]) return 1;
+	                    if (a[sortField] > b[sortField]) return -1;
+	                    return 0;
+	                }
 	            }
 	        });
 	    }
