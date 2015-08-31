@@ -1,56 +1,47 @@
+import Reflux from 'reflux';
 import React from 'react';
 import Infinite from 'react-infinite';
 import _ from 'lodash';
 
-import ChartGroup from './components/ChartGroup';
+import MovieItem from './components/MovieItem';
+import MovieStore from '../../stores/MovieStore';
 
 import './Home.scss';
 
-var paddingTop = 36;
+var paddingTop = 100;
 
 class Home extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {windowWidth: window.innerWidth};
+        this.state = {movies: []};
 
-        this._handleClick = this._handleClick.bind(this);
-        this._handleResize = this._handleResize.bind(this);
+        this.onMovieListChange = this.onMovieListChange.bind(this);
     }
 
     componentDidMount() {
-        window.addEventListener('resize', this._handleResize);
+        this.unsubscribe = MovieStore.listen(this.onMovieListChange);
     }
 
     componentWillUnmount() {
-        window.removeEventListener('resize', this._handleResize);
+        this.unsubscribe();
+    }
+
+    onMovieListChange(movies) {
+        this.setState({
+            movies: movies
+        });
     }
 
     render() {
-        var id = this.props.params.id;
-
-        var numberOfColumns = Math.round(this.state.windowWidth / 380);
-        
         return (
             <div className="home" style={{paddingTop}}>
-                <Infinite containerHeight={document.body.clientHeight - paddingTop} elementHeight={500}>
-                    {_.range(25).map(function(index) {
-                        if (id !== undefined && index === 0) {
-                            return <ChartGroup rows={6} columns={numberOfColumns} key={index} />;
-                        } else {
-                            return <ChartGroup rows={2} columns={numberOfColumns} key={index} />;
-                        }
+                <Infinite containerHeight={document.body.clientHeight - paddingTop} elementHeight={250}>
+                    {this.state.movies.map(function(movie) {
+                        return <MovieItem key={movie.id} title={movie.title} year={movie.year} rating={movie.rating} duration={movie.dur} genres={movie.genres} poster={movie.poster} plot={movie.plot} />
                     })}
                 </Infinite>
             </div>
         );
-    }
-
-    _handleClick() {
-        console.log(this);
-    }
-
-    _handleResize() {
-        this.setState({windowWidth: window.innerWidth});
     }
 }
 
