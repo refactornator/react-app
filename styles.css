@@ -1,4 +1,34 @@
-.movie-item {
+.nav {
+  height: 100px;
+  min-height: 100px;
+  background-color: #323232;
+  box-shadow: 0 3px 2px rgba(50, 50, 50, 0.2);
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 1040; }
+  .nav .title {
+    width: 279px;
+    margin: 0 auto;
+    color: white;
+    font-size: 30px;
+    font-weight: bold; }
+  .nav .search-wrapper {
+    margin: 5px auto 0 auto;
+    width: 243px; }
+    .nav .search-wrapper label.search {
+      color: white;
+      text-align: right;
+      clear: both;
+      float: left;
+      font-size: 20px;
+      margin-right: 5px;
+      margin-top: -3px; }
+    .nav .search-wrapper input.search {
+      display: block; }
+
+/*# sourceMappingURL=dist/sass.map */.movie-item {
   width: 700px;
   height: 251px;
   padding: 12px;
@@ -33,36 +63,6 @@
 
 /*# sourceMappingURL=dist/sass.map */.home {
   background-color: #EEE; }
-
-/*# sourceMappingURL=dist/sass.map */.nav {
-  height: 100px;
-  min-height: 100px;
-  background-color: #323232;
-  box-shadow: 0 3px 2px rgba(50, 50, 50, 0.2);
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  z-index: 1040; }
-  .nav .title {
-    width: 279px;
-    margin: 0 auto;
-    color: white;
-    font-size: 30px;
-    font-weight: bold; }
-  .nav .search-wrapper {
-    margin: 5px auto 0 auto;
-    width: 243px; }
-    .nav .search-wrapper label.search {
-      color: white;
-      text-align: right;
-      clear: both;
-      float: left;
-      font-size: 20px;
-      margin-right: 5px;
-      margin-top: -3px; }
-    .nav .search-wrapper input.search {
-      display: block; }
 
 /*# sourceMappingURL=dist/sass.map */@charset "UTF-8";
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
