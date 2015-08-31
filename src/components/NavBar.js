@@ -10,7 +10,10 @@ import './NavBar.scss';
 class NavBar extends React.Component {
     constructor() {
         super();
+        this.state = {ratingFilterValue: 0};
+
         this._handleInput = this._handleInput.bind(this);
+        this._handleRangeChange = this._handleRangeChange.bind(this);
     }
 
     render() {
@@ -18,6 +21,7 @@ class NavBar extends React.Component {
             <div className="nav">
                 <div className="title">IMDB Movie Searcher</div>
                 <input className="search" type="text" onChange={this._handleInput} />
+                <input style={{display: 'none'}} type="range" min="0" max="5" onChange={this._handleRangeChange} value={this.state.ratingFilterValue} />
             </div>
         );
     }
@@ -25,6 +29,13 @@ class NavBar extends React.Component {
     _handleInput(e) {
         var value = e.target.value;
         MovieActions.filterList(value);
+    }
+
+    _handleRangeChange(e) {
+        var value = e.target.value;
+        this.setState({
+            ratingFilterValue: value
+        });
     }
 }
 

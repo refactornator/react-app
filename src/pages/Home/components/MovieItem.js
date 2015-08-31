@@ -10,7 +10,7 @@ class MovieItem extends React.Component {
 
     render() {
         return <div className="movie-item" onClick={this._handleClick}>
-            <img src="http://placekitten.com/275/150"/>
+            <img src={this.props.poster} width="150" height="223" />
             <div className="info">
                 <div className="title">{this.props.title}</div>
                 <div className="year">Released: {this.props.year}</div>

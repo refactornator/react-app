@@ -1,4 +1,4 @@
-module.exports = [
+[
     {
         "id": "21749",
         "title": "City Lights",
@@ -10108,5 +10108,8 @@ module.exports = [
         "rating": "6.9",
         "poster": "http://ia.media-imdb.com/images/M/MV5BMTUwMDEzNDI1MF5BMl5BanBnXkFtZTgwNzAyODU5MzE@._V1_SX300.jpg",
         "plot": "A young woman is followed by an unknown supernatural force after getting involved in a sexual encounter."
+    },
+    {
+        "id": ""
     }
-];
+]

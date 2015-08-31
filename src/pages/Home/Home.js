@@ -35,9 +35,9 @@ class Home extends React.Component {
     render() {
         return (
             <div className="home" style={{paddingTop}}>
-                <Infinite containerHeight={document.body.clientHeight - paddingTop} elementHeight={200}>
+                <Infinite containerHeight={document.body.clientHeight - paddingTop} elementHeight={250}>
                     {this.state.movies.map(function(movie) {
-                        return <MovieItem title={movie.Title} year={movie.Year} rating={movie.Rating} />
+                        return <MovieItem key={movie.id} title={movie.title} year={movie.year} rating={movie.rating} poster={movie.poster} />
                     })}
                 </Infinite>
             </div>

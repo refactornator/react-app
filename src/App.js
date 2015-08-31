@@ -7,7 +7,7 @@ import MovieActions from './actions/MovieActions';
 
 import '../styles/main.scss'
 
-MovieActions.filterList(); 
+MovieActions.filterList(''); 
 
 class App extends React.Component {
   render() {
